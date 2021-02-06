@@ -1,2 +1,3 @@
-/web-api-ts/
+!/src/.gitkeep
+/src/project
 /.env
