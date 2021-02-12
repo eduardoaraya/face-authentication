@@ -8,5 +8,34 @@ services:
       - 3333:3333
       - 9229:9229
     volumes:
-      - ./src/project/:/var/api/
+      - ./src/services/api/:/var/api/
     tty: true
+    networks:
+      - backend
+  py:
+    image: python:latest
+    volumes:
+      - ./src/services/py/:/var/app/
+    ports:
+      - 7000:7000
+    networks:
+      - backend
+    tty: true
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_USER: root
+    ports:
+      - 5432:5432
+    networks:
+      - backend
+    volumes:
+      - data:/var/data
+networks:
+  backend:
+    driver: bridge
+volumes:
+  data:
+    name: local

@@ -1,3 +1,5 @@
-!/src/.gitkeep
-/src/project
-/.env
+/.vscode
+/src/services/api/node_modules
+/src/services/api/build
+/src/services/api/.env
+!/src/services/py/.gitkeep
