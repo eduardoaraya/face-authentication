@@ -1,24 +1,22 @@
-import express, { Express } from 'express';
-import http from 'http';
-import debug from 'debug';
-import bodyParser from 'body-parser';
-import { PrismaClient } from '@prisma/client'
-import * as reactViews from 'express-react-views';
+import dotenv from 'dotenv';
 
-const PORT = 3333;
-const log = debug('application');
-const app = <Express>express();
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.set('views', __dirname + '/views');
-app.set('view engine', 'tsx');
-app.engine('tsx', reactViews.createEngine());
-
-app.get('/', (req, res) => {
-  res.render('pages/home', {
-    name: 'Araya'
-  })
+dotenv.config({
+  path: process.env.NODE_ENV === 'develop'
+    ? '.env.develop'
+    : '.env'
 })
 
-const server = <http.Server>app.listen(PORT, () => log('> Server on', PORT));
+import App from './app/app';
+import RouterProvider from './app/router-provider'
+const app = new App(
+  process.env.PORT,
+  process.env.HOST,
+  new Object()
+).init();
+
+// app.get('/', (req, res) => {
+//   res.render('pages/home', {
+//     name: 'Araya'
+//   })
+// })
+

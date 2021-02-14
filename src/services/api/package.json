@@ -23,7 +23,7 @@
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "dev": "DEBUG='application' npx nodemon --legacy-watch --config='nodemon.json'",
+        "dev": "NODE_ENV='develop' DEBUG='face-auth:*' npx nodemon --legacy-watch --config='nodemon.json'",
         "exec": "ts-node src/index.ts"
     },
     "author": "",

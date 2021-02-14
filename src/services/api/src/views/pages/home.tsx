@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { FunctionComponent, ReactElement } from 'react';
 import Template from "../template";
 
-const Home = () => {
+const Home: FunctionComponent = (): ReactElement => {
     return (
         <Template>
             <h1>Welcome to face authentication</h1>
-            <button>Sign</button>
-            <button>Signout</button>
+            <a href='/sign'>Sign</a>
+            <a href='/signup'>Signup</a>
         </Template>
     );
 }
