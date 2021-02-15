@@ -3,6 +3,7 @@ import { Server } from 'http';
 import debug from 'debug';
 import bodyParser from 'body-parser';
 import reactViews from 'express-react-views';
+import path from 'path';
 
 const log = debug('face-auth:app');
 
@@ -33,9 +34,10 @@ export default class App<T> {
     this.app.use(bodyParser.urlencoded({ extended: true }));
     this.app.use(bodyParser.json());
     this.app.use(this.routes.getRouters());
+    this.app.all('*', (req, res) => res.render('errors/404', {}));
   }
   private async setViewEngine() {
-    this.app.set('views', __dirname + '/views');
+    this.app.set('views', path.join(__dirname, '..', 'views'));
     this.app.set('view engine', 'tsx');
     this.app.engine('tsx', reactViews.createEngine());
   }
