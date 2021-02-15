@@ -7,11 +7,16 @@ const log = debug('face-auth:routers');
 
 export default class RouterProvider<T> {
   private router: Router;
+  private registry: any = {};
   constructor(private app) {
     log('> Init router provider')
     this.router = Router();
     this.router.use((req, res, next) => {
-      log('> New call in router:', req.url)
+      const { url, method, path } = req;
+      log('> New call in router:', url)
+      if (this.registry[`${method}:${path}`] === undefined) {
+        return res.render('errors/404', {});
+      }
       next();
     });
     this.init();
@@ -45,6 +50,7 @@ export default class RouterProvider<T> {
     const HandleController = await import(
       pathModule.join(__dirname, 'controllers', controller)
     );
+    this.registry[`${methodRest.toUpperCase()}:${path}`] = HandleController.default[method];
     this.router[methodRest](path, HandleController.default[method]);
   }
   getRouters(): Router {

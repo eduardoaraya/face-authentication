@@ -1,12 +1,19 @@
-import React, { FunctionComponent, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import Template from "../template";
 
-const Home: FunctionComponent = (): ReactElement => {
+const Home = ({ }): ReactElement => {
     return (
         <Template>
-            <h1>Welcome to face authentication</h1>
-            <a href='/sign'>Sign</a>
-            <a href='/signup'>Signup</a>
+            <div className="container">
+                <div className="title-header">
+                    <h1 className="title">Welcome to {process.env.APP_NAME}</h1>
+                    <span className="version">version: {process.env.APP_VERSION}</span>
+                </div>
+                <div className="actions">
+                    <a className="btn" href='/signin'>Signin</a>
+                    <a className="btn" href='/signup'>Signup</a>
+                </div>
+            </div>
         </Template>
     );
 }

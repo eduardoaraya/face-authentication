@@ -33,12 +33,21 @@ export default class App<T> {
   private async initMiddlewares() {
     this.app.use(bodyParser.urlencoded({ extended: true }));
     this.app.use(bodyParser.json());
+    this.app.use(express.static(path.join(__dirname, '..', 'assets', 'public')))
     this.app.use(this.routes.getRouters());
-    this.app.all('*', (req, res) => res.render('errors/404', {}));
   }
   private async setViewEngine() {
     this.app.set('views', path.join(__dirname, '..', 'views'));
     this.app.set('view engine', 'tsx');
     this.app.engine('tsx', reactViews.createEngine());
+  }
+  public getAppName() {
+    return this.appName;
+  }
+  public getHost() {
+    return this.host;
+  }
+  public getExpress() {
+    return this.app;
   }
 }
