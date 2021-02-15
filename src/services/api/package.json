@@ -24,7 +24,8 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "NODE_ENV='develop' DEBUG='face-auth:*' npx nodemon --legacy-watch --config='nodemon.json'",
-        "exec": "ts-node src/index.ts"
+        "exec": "ts-node src/index.ts",
+        "predev": "fuser -k 4000/tcp && echo 'Terminated' || echo 'Nothing was running on the PORT'"
     },
     "author": "",
     "license": "ISC"

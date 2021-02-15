@@ -7,16 +7,15 @@ dotenv.config({
 })
 
 import App from './app/app';
-import RouterProvider from './app/router-provider'
+import RouterProvider from './app/router.provider'
+
 const app = new App(
   process.env.PORT,
   process.env.HOST,
-  new Object()
-).init();
+  process.env.APP_NAME,
+  RouterProvider
+);
 
-// app.get('/', (req, res) => {
-//   res.render('pages/home', {
-//     name: 'Araya'
-//   })
-// })
+app.init();
+
 

@@ -6,9 +6,11 @@ services:
       dockerfile: Dockerfile
     ports:
       - 3333:3333
+      - 8000:8000
       - 9229:9229
     volumes:
       - ./src/services/api/:/var/api/
+      - ./src/services/api/node_modules:/var/api/node_modules
     tty: true
     networks:
       - backend

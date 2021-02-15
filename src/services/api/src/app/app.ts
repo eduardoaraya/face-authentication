@@ -6,19 +6,17 @@ import reactViews from 'express-react-views';
 
 const log = debug('face-auth:app');
 
-type AppType = {
-  readonly port: number,
-  readonly routes: string
-}
-export default class App<AppType> {
+export default class App<T> {
   private server: Server | undefined;
   private app: Express;
   constructor(
-    private readonly PORT,
-    private readonly routes,
-    private readonly host
+    private readonly port,
+    private readonly host,
+    private readonly appName,
+    private routes
   ) {
     this.app = express();
+    this.routes = new this.routes(this)
   }
   public async init() {
     await this.initMiddlewares();
@@ -26,14 +24,15 @@ export default class App<AppType> {
     await this.startServer();
   }
   private async startServer(): Promise<Server> {
-    this.server = <Server>this.app.listen(this.PORT, () => {
-      log('> Server on port: ', this.PORT)
+    this.server = this.app.listen(this.port, () => {
+      log('> Server on port: ', this.port)
     });
     return this.server;
   }
   private async initMiddlewares() {
     this.app.use(bodyParser.urlencoded({ extended: true }));
     this.app.use(bodyParser.json());
+    this.app.use(this.routes.getRouters());
   }
   private async setViewEngine() {
     this.app.set('views', __dirname + '/views');
