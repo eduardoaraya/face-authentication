@@ -2,7 +2,7 @@
     "watch": [
         "src"
     ],
-    "ext": "ts,json,js",
+    "ext": "ts,json,js,tsx",
     "ignore": [
         "src/**/*.spec.ts"
     ],

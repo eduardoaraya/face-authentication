@@ -6,8 +6,8 @@ const Home = ({ }): ReactElement => {
         <Template>
             <div className="container">
                 <div className="title-header">
-                    <h1 className="title">Welcome to {process.env.APP_NAME}</h1>
                     <span className="version">version: {process.env.APP_VERSION}</span>
+                    <h1 className="title">Welcome to {process.env.APP_NAME}</h1>
                 </div>
                 <div className="actions">
                     <a className="btn" href='/signin'>Signin</a>

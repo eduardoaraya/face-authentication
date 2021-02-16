@@ -49,6 +49,7 @@ button, a {
     cursor: pointer;
     opacity: .76;
     transition: .3s;
+    font-size: .64em;
 }
 
 .btn:hover {

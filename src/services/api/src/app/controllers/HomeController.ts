@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Request, Response, Router } from 'express';
 class HomeController {
   async index(req: Request, res: Response): Promise<void> {
     return res.render('pages/home');

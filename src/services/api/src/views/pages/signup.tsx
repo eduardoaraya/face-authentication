@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react';
 import Template from "../template";
 
 const Signup = ({ }): ReactElement => {
+
     return (
         <Template>
             <div className="container">

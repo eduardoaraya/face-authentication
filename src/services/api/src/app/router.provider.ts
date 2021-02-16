@@ -1,11 +1,12 @@
 import { Router } from 'express';
-import api from './router/api';
+import api from '../router/api';
 import debug from 'debug';
 import pathModule from 'path';
+import { RouterProviderInterface } from '../@types/app/app';
 
 const log = debug('face-auth:routers');
 
-export default class RouterProvider<T> {
+export default class RouterProvider<T> implements RouterProviderInterface {
   private router: Router;
   private registry: any = {};
   constructor(private app) {
@@ -21,22 +22,11 @@ export default class RouterProvider<T> {
     });
     this.init();
   }
-  private async init() {
-    api(this)
-  }
-  public get(path, handle) {
-    return this.setRouter('get', path, handle);
-  }
-  public post(path, handle) {
-    return this.setRouter('post', path, handle);
-  }
-  public put(path, handle) {
-    return this.setRouter('put', path, handle);
-  }
-  public delete(path, handle) {
-    return this.setRouter('delete', path, handle);
-  }
-  private async setRouter(methodRest: string, path: string, handle: string = '') {
+  private async setRouter(
+    methodRest: string,
+    path: string,
+    handle: string
+  ): Promise<void> {
     if (!handle) {
       throw new Error('> Invalid handle router');
     }
@@ -48,10 +38,29 @@ export default class RouterProvider<T> {
       throw new Error('> Invalid controller or method: ' + handle);
     }
     const HandleController = await import(
-      pathModule.join(__dirname, 'controllers', controller)
+      pathModule.join(
+        __dirname,
+        'controllers',
+        controller
+      )
     );
     this.registry[`${methodRest.toUpperCase()}:${path}`] = HandleController.default[method];
     this.router[methodRest](path, HandleController.default[method]);
+  }
+  private async init() {
+    api(this)
+  }
+  get(path, handle) {
+    return this.setRouter('get', path, handle);
+  }
+  post(path, handle) {
+    return this.setRouter('post', path, handle);
+  }
+  put(path, handle) {
+    return this.setRouter('put', path, handle);
+  }
+  delete(path, handle) {
+    return this.setRouter('delete', path, handle);
   }
   getRouters(): Router {
     return this.router;
