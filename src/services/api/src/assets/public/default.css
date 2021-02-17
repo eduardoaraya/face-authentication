@@ -13,8 +13,8 @@
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 18px;
+    font-family: 'Roboto', serif;
+    font-size: 16px;
     background: var(--color-light);
 }
 
@@ -58,17 +58,25 @@ a,p,h1,h2,h3,h4,h5,h6 {
 .btn {
     padding: 10px 20px;
     text-transform: uppercase;
-    background: #DDD;
+    background: var(--color-secundary);
     border-radius: 5px;
-    margin: 0 5px;
     cursor: pointer;
     opacity: .76;
     transition: .3s;
-    font-size: .64em;
+    font-size: .84em;
+    max-width: bolder;
+    margin: 0 .6em;
+    color: var(--color-highlight);
 }
 
 .btn:hover {
     opacity: 1;
+}
+
+
+.btn.primary {
+    background: var(--color-primary);
+    color: #FFF;
 }
 
 .actions {
@@ -82,19 +90,34 @@ a,p,h1,h2,h3,h4,h5,h6 {
 .input-element {
     border: none;
     padding: 10px;
-    margin:.80em 1em;
-    box-shadow: 0px 0px 1px -4px rgba(0, 0, 0, 0.74);
+    margin:0 1em;
+    box-shadow: 0px 3px 10px -13px rgba(77, 77, 77, 0.74);
     background: #FFF;
     max-width: 500px;
 }
+
 .input-area {
     width: 100%;
     display: flex;
     flex-direction: column;
+    margin: 1em 0em;
 }
 
 .form-element {
     padding:20px 10px;
     display: flex;
     flex-direction: column;
+}
+
+
+.form-footer {
+    padding: 30px .2em;
+    margin: 0;
+    border-bottom:solid 1px var(--color-highlight);
+}
+
+.label-element {
+    font-size: .94em;
+    margin:0 1em;
+    font-weight: bold;
 }
