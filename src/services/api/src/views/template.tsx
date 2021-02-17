@@ -11,7 +11,7 @@ const Template = ({ children }): ReactElement => {
                 <link rel="stylesheet" href="default.css" />
             </head>
             <body>
-                {children}
+                {...children}
             </body>
         </html>
     );
