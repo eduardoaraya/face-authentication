@@ -3,7 +3,7 @@ import Template from "../template";
 
 const Home = ({ }): ReactElement => {
     return (
-        <Template>
+        <Template bodyClass="home-page">
             <div className="container">
                 <div className="title-header">
                     <span className="version">version: {process.env.APP_VERSION}</span>

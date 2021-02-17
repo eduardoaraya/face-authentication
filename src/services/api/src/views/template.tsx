@@ -1,6 +1,6 @@
 import React, { FunctionComponent, ReactElement } from 'react';
 
-const Template = ({ children }): ReactElement => {
+const Template = ({ children, bodyClass = 'default-page' }): ReactElement => {
     return (
         <html lang="en">
             <head>
@@ -12,8 +12,8 @@ const Template = ({ children }): ReactElement => {
                 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
                 <link rel="stylesheet" href="default.css" />
             </head>
-            <body>
-                {...children}
+            <body className={bodyClass}>
+                {children}
             </body>
         </html>
     );
