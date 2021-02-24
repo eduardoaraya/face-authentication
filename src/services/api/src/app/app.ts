@@ -4,20 +4,23 @@ import debug from 'debug';
 import bodyParser from 'body-parser';
 import reactViews from 'express-react-views';
 import path from 'path';
+import RouterProvider from './router.provider';
+import appConfig from '../configs/app.config';
 
 const log = debug('face-auth:app');
-
-export default class App<T> {
+export default class App {
   private server: Server | undefined;
   private app: Express;
-  constructor(
-    private readonly port,
-    private readonly host,
-    private readonly appName,
-    private routes
-  ) {
+  private router: RouterProvider;
+  private port: string;
+  private host: string;
+  private appName: string;
+  constructor() {
     this.app = express();
-    this.routes = new this.routes(this)
+    this.port = appConfig().port;
+    this.appName = appConfig().appName;
+    this.host = appConfig().host;
+    this.router = new RouterProvider(this)
   }
   public async init() {
     await this.initMiddlewares();
@@ -26,7 +29,7 @@ export default class App<T> {
   }
   private async startServer(): Promise<Server> {
     this.server = this.app.listen(this.port, () => {
-      log('> Server on port: ', this.port)
+      log('> Server on: ', `${this.host}:${this.port}`)
     });
     return this.server;
   }
@@ -34,7 +37,7 @@ export default class App<T> {
     this.app.use(bodyParser.urlencoded({ extended: true }));
     this.app.use(bodyParser.json());
     this.app.use(express.static(path.join(__dirname, '..', 'assets', 'public')))
-    this.app.use(this.routes.getRouters());
+    this.app.use(this.router.getRouters());
   }
   private async setViewEngine() {
     this.app.set('views', path.join(__dirname, '..', 'views'));

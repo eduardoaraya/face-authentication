@@ -3,13 +3,14 @@ import api from '../router/api';
 import debug from 'debug';
 import pathModule from 'path';
 import { RouterProviderInterface } from '../@types/app/app';
+import App from './app';
 
 const log = debug('face-auth:routers');
 
-export default class RouterProvider<T> implements RouterProviderInterface {
+export default class RouterProvider implements RouterProviderInterface {
   private router: Router;
   private registry: any = {};
-  constructor(private app) {
+  constructor(private app: App) {
     log('> Init router provider')
     this.router = Router();
     this.router.use((req, res, next) => {
