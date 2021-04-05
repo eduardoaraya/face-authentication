@@ -1,5 +1,6 @@
 /.vscode
 /src/services/api/node_modules
 /src/services/api/build
+/src/var/logs/*
 /src/services/api/.env
 !/src/services/py/.gitkeep
