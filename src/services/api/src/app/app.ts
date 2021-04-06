@@ -1,7 +1,6 @@
 import express, { Express } from 'express';
 import { Server } from 'http';
 import debug from 'debug';
-import bodyParser from 'body-parser';
 import reactViews from 'express-react-views';
 import path from 'path';
 
