@@ -3,11 +3,8 @@ import api from '../router/api';
 import debug from 'debug';
 import pathModule from 'path';
 import { RouterProviderInterface } from '../@types/app/app';
-<<<<<<< HEAD
 import App from './app';
-=======
 import { exec } from 'child_process';
->>>>>>> f8899611e7036f4045247b79e4531b73a2b1bd14
 
 const log = debug('face-auth:routers');
 
