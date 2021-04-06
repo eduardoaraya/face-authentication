@@ -29,13 +29,15 @@ export default class App {
   }
   private async startServer(): Promise<Server> {
     this.server = this.app.listen(this.port, () => {
+<<<<<<< HEAD
       log('> Server on: ', `${this.host}:${this.port}`)
+=======
+      log('> Server on port: ', `http:\\${this.host}:${this.port}`);
+>>>>>>> f8899611e7036f4045247b79e4531b73a2b1bd14
     });
     return this.server;
   }
   private async initMiddlewares() {
-    this.app.use(bodyParser.urlencoded({ extended: true }));
-    this.app.use(bodyParser.json());
     this.app.use(express.static(path.join(__dirname, '..', 'assets', 'public')))
     this.app.use(this.router.getRouters());
   }
