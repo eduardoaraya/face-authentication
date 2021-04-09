@@ -4,4 +4,4 @@
 /src/var/logs/*
 /src/services/api/.env
 !/src/services/py/.gitkeep
-/src/services/api/var/logs
+/src/services/api/var/*

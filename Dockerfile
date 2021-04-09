@@ -1,4 +1,4 @@
-FROM node:14.0
+FROM node:15.12.0
 WORKDIR /var/api
 EXPOSE 8000:8000
 RUN apt-get update && apt-get upgrade -y --no-install-recommends

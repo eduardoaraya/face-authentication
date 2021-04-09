@@ -6,12 +6,12 @@ dotenv.config({
     : '.env'
 })
 
-export default () => <{
+export default (): {
   port: string,
   host: string,
   appName: string
-}>({
-  port: process.env.PORT,
-  host: process.env.HOST,
-  appName: process.env.APP_NAME,
+} => ({
+  port: process.env.PORT as string,
+  host: process.env.HOST as string,
+  appName: process.env.APP_NAME as string,
 })
