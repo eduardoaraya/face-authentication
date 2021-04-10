@@ -9,8 +9,8 @@ import { exec } from 'child_process';
 const log = debug('face-auth:routers');
 
 export default abstract class AbstractRouter {
-  private router: Router;
-  private registry: any = {};
+  protected router: Router;
+  protected registry: any = {};
   constructor(private app: App) {
     log('> Init router provider')
     this.router = Router();
@@ -28,10 +28,13 @@ export default abstract class AbstractRouter {
       }
       next();
     });
-    this.init(app);
+    this.init(
+      this.getProvider()
+    );
   }
-  private async init(app) {
-    api(app)
+  abstract getProvider();
+  private async init(context) {
+    api(context)
   }
   protected async setRouter(
     methodRest: string,

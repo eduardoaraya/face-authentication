@@ -3,6 +3,9 @@ import { RouterProviderInterface } from '../@types/app/app';
 import AbstractRouter from './core/router.abstract';
 
 export default class RouterProvider extends AbstractRouter implements RouterProviderInterface {
+  getProvider(): RouterProviderInterface {
+    return this;
+  }
   get(path, handle) {
     return this.setRouter('get', path, handle);
   }
